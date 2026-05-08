@@ -150,7 +150,7 @@ const client = createPublicClient({ chain: base, transport: http() })
 - [eth_getTransactionCount](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_getTransactionCount): Returns the number of transactions sent from an address (the nonce). Use pending on a Flashblocks endpoint to get the pre-confirmed nonce.
 - [eth_getTransactionReceipt](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_getTransactionReceipt): Returns the receipt for a mined transaction. Receipts are only available after a transaction is included in a block.
 - [eth_maxPriorityFeePerGas](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_maxPriorityFeePerGas): Returns the suggested EIP-1559 priority fee (tip) per gas.
-- [eth_sendRawTransaction](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_sendRawTransaction): Submits a pre-signed transaction to the network. Submit to a Flashblocks preconf endpoint to get 200ms pre-confirmation.
+- [eth_sendRawTransaction](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_sendRawTransaction): Submits a pre-signed transaction to the network. Use a Flashblocks preconf endpoint when you need faster pre-confirmation signals.
 - [eth_subscribe](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_subscribe): Creates a real-time WebSocket subscription. Flashblocks endpoints add three extra subscription types and emit newHeads every ~200ms.
 - [eth_syncing](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_syncing): Returns the sync status of the node.
 - [eth_unsubscribe](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_unsubscribe): Cancels an active WebSocket subscription.
@@ -168,7 +168,7 @@ const client = createPublicClient({ chain: base, transport: http() })
 - [Flashblocks FAQ](https://docs.base.org/base-chain/flashblocks/faq): Frequently asked questions about Flashblocks, including block building, WebSocket data, RPC usage, and node setup.
 - [Contract Addresses](https://docs.base.org/base-chain/network-information/base-contracts): A comprehensive list of L2 contract addresses for Base Mainnet and Base Testnet, including links to their respective blockchain explorers.
 - [Block Building](https://docs.base.org/base-chain/network-information/block-building): This page outlines how Base blocks are built.
-- [Bridges](https://docs.base.org/base-chain/network-information/bridges): Documentation for bridging assets to Base. This page covers how to bridge assets between Ethereum, Solana, Bitcoin, and Base.
+- [Bridging](https://docs.base.org/base-chain/network-information/bridges): How assets and messages move between Base, Ethereum, Solana, Bitcoin, and other chains.
 - [Configuration Changelog](https://docs.base.org/base-chain/network-information/configuration-changelog): A log of configuration changes to the Base networks.
 - [Differences between Ethereum and Base](https://docs.base.org/base-chain/network-information/diffs-ethereum-base)
 - [Ecosystem Contracts](https://docs.base.org/base-chain/network-information/ecosystem-contracts)
@@ -182,10 +182,10 @@ const client = createPublicClient({ chain: base, transport: http() })
 - [Run a Node](https://docs.base.org/base-chain/node-operators/run-a-base-node): A tutorial that teaches how to set up and run a Base Node.
 - [Node Snapshots](https://docs.base.org/base-chain/node-operators/snapshots): Download and restore Base node snapshots to significantly reduce initial sync time for both archive and pruned nodes.
 - [Node Troubleshooting](https://docs.base.org/base-chain/node-operators/troubleshooting): Solutions to common issues when setting up and running a Base node, covering sync problems, networking, snapshots, and performance.
-- [Base-Solana Bridge](https://docs.base.org/base-chain/quickstart/base-solana-bridge): Bridge tokens and messages between Base and Solana Mainnet
+- [Base-Solana Bridge](https://docs.base.org/base-chain/network-information/base-solana-bridge): Bridge tokens and messages between Base and Solana Mainnet
 - [Connecting to Base](https://docs.base.org/base-chain/quickstart/connecting-to-base): Documentation about Base Mainnet and Base Testnet. This page covers network information for the Base network, including network names, descriptions, RPC endpoints, chain IDs, currency symbols, and block explorers.
-- [Deploy on Base](https://docs.base.org/base-chain/quickstart/deploy-on-base)
-- [Why Base?](https://docs.base.org/base-chain/quickstart/why-base)
+- [Deploy on Base](https://docs.base.org/apps/quickstart/deploy-on-base)
+- [Chain Overview](https://docs.base.org/base-chain/overview)
 - [How to avoid getting your app flagged as malicious](https://docs.base.org/base-chain/security/avoid-malicious-flags): The Base bug bounty program and procedures for reporting vulnerabilities.
 - [Bug Bounty](https://docs.base.org/base-chain/security/bug-bounty)
 - [Reporting Vulnerabilities](https://docs.base.org/base-chain/security/report-vulnerability): The Base procedures for reporting vulnerabilities.
@@ -398,6 +398,7 @@ const client = createPublicClient({ chain: base, transport: http() })
 - [Rewards](https://docs.base.org/apps/growth/rewards): Earn financial incentives for building high-quality  Apps that drive user engagement and onchain transactions
 - [Migrate to a Standard Web App](https://docs.base.org/apps/guides/migrate-to-standard-web-app): Migrate your Farcaster mini-app to work in the Base App. Covers replacing deprecated SDK methods, and registering on Base.dev.
 - [Build an app on Base](https://docs.base.org/apps/quickstart/build-app): A step-by-step guide to building a Next.js tally app on Base using wagmi and viem, with wallet connection, contract reads and writes, and batch transaction support.
+- [Deploy on Base](https://docs.base.org/apps/quickstart/deploy-on-base): Deploy a smart contract to Base Sepolia with Foundry.
 - [Add notifications](https://docs.base.org/apps/technical-guides/base-notifications): Send in-app notifications to your app's users through the Base Dashboard REST API.
 
 ## Optional

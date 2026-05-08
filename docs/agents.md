@@ -50,7 +50,7 @@ npx skills add base/base-skills
 |apps/builder-codes:agent-developers,app-developers,builder-codes,wallet-developers
 |apps/growth:rewards
 |apps/guides:migrate-to-standard-web-app
-|apps/quickstart:build-app
+|apps/quickstart:build-app,deploy-on-base
 |apps/resources:design-resources,templates
 |apps/technical-guides:base-notifications
 |base-account/basenames:basename-transfer,basenames-faq
@@ -78,10 +78,10 @@ npx skills add base/base-skills
 |base-chain/api-reference/debug-api:debug_traceBlockByHash,debug_traceBlockByNumber,debug_traceTransaction
 |base-chain/api-reference/ethereum-json-rpc-api:eth_blockNumber,eth_call,eth_chainId,eth_estimateGas,eth_feeHistory,eth_gasPrice,eth_getBalance,eth_getBlockByHash,eth_getBlockByNumber,eth_getBlockReceipts,eth_getBlockTransactionCountByHash,eth_getBlockTransactionCountByNumber,eth_getCode,eth_getLogs,eth_getStorageAt,eth_getTransactionByBlockHashAndIndex,eth_getTransactionByBlockNumberAndIndex,eth_getTransactionByHash,eth_getTransactionCount,eth_getTransactionReceipt,eth_maxPriorityFeePerGas,eth_sendRawTransaction,eth_subscribe,eth_syncing,eth_unsubscribe,net_version,web3_clientVersion
 |base-chain/api-reference/flashblocks-api:base_transactionStatus,eth_simulateV1,flashblocks-api-overview,newFlashblockTransactions,newFlashblocks,pendingLogs
-|base-chain/flashblocks:app-integration,architecture,faq,overview
-|base-chain/network-information:base-contracts,block-building,bridges,configuration-changelog,diffs-ethereum-base,ecosystem-contracts,network-faucets,network-fees,transaction-finality,troubleshooting-transactions
+|base-chain:overview
+|base-chain/network-information:base-contracts,base-solana-bridge,block-building,bridges,configuration-changelog,diffs-ethereum-base,ecosystem-contracts,network-faucets,network-fees,networks-and-endpoints,sequencing-policy,throughput-and-limits,transaction-finality,transaction-lifecycle,troubleshooting-transactions
 |base-chain/node-operators:base-v1-upgrade,node-providers,performance-tuning,run-a-base-node,snapshots,troubleshooting
-|base-chain/quickstart:base-solana-bridge,connecting-to-base,deploy-on-base,why-base
+|base-chain/quickstart:connecting-to-base
 |base-chain/security:avoid-malicious-flags,bug-bounty,report-vulnerability,security-council
 |base-chain/specs:overview
 |base-chain/specs/bcps:bcp-0000,index
