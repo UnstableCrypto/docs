@@ -4,7 +4,7 @@ sidebarTitle: 'newFlashblocks'
 description: 'Subscribe to receive full Flashblock payload stream as each pre-confirmed block is built. Only available on Flashblocks WebSocket endpoints.'
 ---
 
-Subscribe via `eth_subscribe` to receive full block state updates as each Flashblock is built. Each message contains the accumulated pre-confirmed state for the block in progress.
+Subscribe via `eth_subscribe` to receive the current pending block state as each Flashblock is built. Each message is the **complete accumulated block** — a standard Ethereum block object containing all transactions pre-confirmed so far.
 
 <Info>
 Only available on Flashblocks WebSocket endpoints: `wss://mainnet-preconf.base.org` and `wss://sepolia-preconf.base.org`.
@@ -15,7 +15,7 @@ Requires [base/base](https://github.com/base/base) minimum client version v0.3.1
 </Note>
 
 <Warning>
-Each subscription emits **one Flashblock Object per WebSocket message**. Events arrive approximately every 200ms. If your handler performs heavy processing per event, throttle or debounce it to avoid blocking.
+Multiple notifications are emitted per block height. Each Flashblock (~200ms) triggers a new notification for the same block with more transactions added. This is **accumulating state**, not a diff — every message replaces the previous one. Your handler should treat each notification as the latest known state of the in-progress block.
 </Warning>
 
 ## Parameters
@@ -26,8 +26,35 @@ Each subscription emits **one Flashblock Object per WebSocket message**. Events 
 
 ## Returns
 
-<ResponseField name="result" type="string">
-  Hex-encoded subscription ID. Each event notification delivers a **Flashblock Object** — not a standard block object. The payload contains `payload_id`, `index`, `diff`, and (on index 0) `base`. See the [Infrastructure Stream schema](/base-chain/api-reference/flashblocks-api/flashblocks-api-overview#flashblock-object) for the full structure.
+The initial `eth_subscribe` response returns a hex-encoded subscription ID. After that, the node pushes one notification per Flashblock (~200ms). Each notification's `result` is a **standard Ethereum block object** identical in shape to `eth_getBlockByNumber` with `hydrated=true`, but representing the pending (not yet sealed) block.
+
+Key differences from a sealed block:
+
+- `transactions` is a full array of transaction objects (always hydrated — hashes are never returned)
+- `hash`, `stateRoot`, `receiptsRoot`, `transactionsRoot` reflect the partial block state at time of emission and will differ from the final sealed block values
+- The same block `number` will appear in multiple notifications as new Flashblocks accumulate
+
+<ResponseField name="result" type="object">
+  Standard Ethereum block object. Fields match `eth_getBlockByNumber` with `hydrated=true`.
+
+  <Expandable title="Block fields">
+    <ResponseField name="number" type="string">Block number (hex).</ResponseField>
+    <ResponseField name="hash" type="string">Partial block hash at the time of this Flashblock. Changes with each emission until the block is sealed.</ResponseField>
+    <ResponseField name="parentHash" type="string">Hash of the parent block.</ResponseField>
+    <ResponseField name="timestamp" type="string">Unix block timestamp (hex).</ResponseField>
+    <ResponseField name="gasLimit" type="string">Maximum gas allowed (hex).</ResponseField>
+    <ResponseField name="gasUsed" type="string">Cumulative gas used so far (hex). Increases with each Flashblock.</ResponseField>
+    <ResponseField name="baseFeePerGas" type="string">EIP-1559 base fee per gas (hex).</ResponseField>
+    <ResponseField name="miner" type="string">Fee recipient address (coinbase).</ResponseField>
+    <ResponseField name="stateRoot" type="string">State root at the time of this Flashblock (partial).</ResponseField>
+    <ResponseField name="receiptsRoot" type="string">Receipts root (partial).</ResponseField>
+    <ResponseField name="transactionsRoot" type="string">Transactions root (partial).</ResponseField>
+    <ResponseField name="logsBloom" type="string">Bloom filter for logs in the block so far.</ResponseField>
+    <ResponseField name="extraData" type="string">Sequencer extra data field.</ResponseField>
+    <ResponseField name="transactions" type="array">Full transaction objects for all transactions pre-confirmed so far. Same shape as transactions returned by `eth_getBlockByNumber` with `hydrated=true`.</ResponseField>
+    <ResponseField name="withdrawals" type="array">Validator withdrawals (always empty on Base L2).</ResponseField>
+    <ResponseField name="uncles" type="array">Always empty on Base L2.</ResponseField>
+  </Expandable>
 </ResponseField>
 
 ## Example

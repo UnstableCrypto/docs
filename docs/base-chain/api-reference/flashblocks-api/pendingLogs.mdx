@@ -39,9 +39,54 @@ Each subscription emits **one item per WebSocket message**. Events arrive approx
 
 ## Returns
 
-<ResponseField name="result" type="string">
-  Hex-encoded subscription ID.
+The initial `eth_subscribe` response returns a hex-encoded subscription ID. After that, the node pushes one notification per matching log per WebSocket message.
+
+Each notification's `result` is a full log object:
+
+<ResponseField name="result" type="object">
+  A single log object matching the filter.
+
+  <Expandable title="Log fields">
+    <ResponseField name="address" type="string">Contract address that emitted the log.</ResponseField>
+    <ResponseField name="topics" type="string[]">Indexed event parameters. Topic 0 is typically the event signature hash.</ResponseField>
+    <ResponseField name="data" type="string">ABI-encoded non-indexed event parameters.</ResponseField>
+    <ResponseField name="blockHash" type="string">Hash of the partial block at time of pre-confirmation. Always `"0x0000...0000"` for Flashblocks logs (block not yet sealed).</ResponseField>
+    <ResponseField name="blockNumber" type="string">Block number (hex).</ResponseField>
+    <ResponseField name="blockTimestamp" type="string">Unix timestamp of the block (hex).</ResponseField>
+    <ResponseField name="transactionHash" type="string">Hash of the transaction that emitted this log.</ResponseField>
+    <ResponseField name="transactionIndex" type="string">Index of the transaction within the block (hex).</ResponseField>
+    <ResponseField name="logIndex" type="string">Index of this log within the block (hex).</ResponseField>
+    <ResponseField name="removed" type="boolean">Always `false` for Flashblocks logs.</ResponseField>
+  </Expandable>
 </ResponseField>
+
+## Notification Format
+
+```json Notification
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0xe1f42d3d4c3e4a09c76c98857b01e50d",
+    "result": {
+      "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "topics": [
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "0x000000000000000000000000828bbaee2935085bbb9bc6b72fb65e867205e1b5",
+        "0x000000000000000000000000dbc6998296caa1652a810dc8d3baf4a8294330f1"
+      ],
+      "data": "0x0000000000000000000000000000000000000000000000000000000006bce5f9",
+      "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "blockNumber": "0x27920d7",
+      "blockTimestamp": "0x697c9e91",
+      "transactionHash": "0xa98490d6c1b13a72e7753ba9217269a5059db631deab582b572c4d6c9399c240",
+      "transactionIndex": "0xb9",
+      "logIndex": "0x4ec",
+      "removed": false
+    }
+  }
+}
+```
 
 ## Example
 
@@ -61,7 +106,11 @@ Each subscription emits **one item per WebSocket message**. Events arrive approx
 }
 ```
 
+```json Subscribe (all logs)
+{"jsonrpc": "2.0", "id": 1, "method": "eth_subscribe", "params": ["pendingLogs"]}
+```
+
 ```json Subscription ID Response
-{"jsonrpc": "2.0", "id": 1, "result": "0x2a7bc8d4e3f5a6b1c2d3e4f5a6b7c8d9"}
+{"jsonrpc": "2.0", "id": 1, "result": "0xe1f42d3d4c3e4a09c76c98857b01e50d"}
 ```
 </CodeGroup>

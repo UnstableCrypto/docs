@@ -18,14 +18,24 @@ Requires [base/base](https://github.com/base/base) minimum client version v0.8.0
 Each subscription emits **one item per WebSocket message**. Events arrive approximately every 200ms. If your handler performs heavy processing per event, throttle or debounce it to avoid blocking.
 </Warning>
 
+<Warning>
+**Breaking change in v0.8.0:** The `gasUsed` field changed from an optional integer (`null` or `123456`) to a required hex string (`"0x1e240"`). Existing consumers of `newFlashblockTransactions` with `full: true` must update their parsers before upgrading to v0.8.0.
+</Warning>
+
 ## Parameters
 
 <ParamField body="subscriptionType" type="string" required>
   Must be `"newFlashblockTransactions"`.
 </ParamField>
 
-<ParamField body="full" type="boolean">
-  If `true`, each notification includes the full transaction object, associated logs, and receipt fields (`type`, `status`, `cumulativeGasUsed`, `logs`, `logsBloom`, `transactionIndex`). Defaults to `false` (transaction hash only).
+<ParamField body="full" type="boolean | object">
+  Controls the notification content. Three modes are supported:
+
+  - **`false` (default)** — each notification delivers a transaction hash string.
+  - **`true`** — each notification delivers the full `TransactionWithLogs` object (transaction fields + logs + receipt fields).
+  - **Filter object** — pass `{ "address": "0x...", "topics": [...] }` to stream only transactions where at least one emitted log matches the filter. Each matching notification delivers the full `TransactionWithLogs` object. All logs for the transaction are included, not just the matching ones.
+
+  The filter object accepts the same `address` and `topics` fields as `eth_getLogs`.
 </ParamField>
 
 ## Returns
@@ -39,28 +49,33 @@ The initial `eth_subscribe` response returns a hex-encoded subscription ID strin
 <ResponseField name="result" type="object">
   The pre-confirmed transaction object. Only present when `full` is `true`; otherwise `result` is a transaction hash string.
 
-  <Expandable title="Transaction fields">
+  <Expandable title="Transaction and receipt fields">
     <ResponseField name="hash" type="string">Transaction hash.</ResponseField>
     <ResponseField name="from" type="string">Sender address.</ResponseField>
     <ResponseField name="to" type="string">Recipient address. `null` for contract deployments.</ResponseField>
     <ResponseField name="value" type="string">ETH value transferred (hex).</ResponseField>
     <ResponseField name="gas" type="string">Gas limit (hex).</ResponseField>
-    <ResponseField name="gasPrice" type="string">Gas price (hex).</ResponseField>
+    <ResponseField name="gasPrice" type="string">Effective gas price (hex).</ResponseField>
+    <ResponseField name="maxFeePerGas" type="string">Max fee per gas for EIP-1559 transactions (hex).</ResponseField>
+    <ResponseField name="maxPriorityFeePerGas" type="string">Max priority fee per gas for EIP-1559 transactions (hex).</ResponseField>
     <ResponseField name="nonce" type="string">Sender nonce (hex).</ResponseField>
     <ResponseField name="input" type="string">ABI-encoded calldata.</ResponseField>
     <ResponseField name="type" type="string">Transaction type: `0x0` Legacy, `0x1` Access List, `0x2` EIP-1559.</ResponseField>
+    <ResponseField name="chainId" type="string">Chain ID (hex). Base mainnet: `0x2105`.</ResponseField>
+    <ResponseField name="blockNumber" type="string">Block number this transaction was pre-confirmed in (hex).</ResponseField>
+    <ResponseField name="transactionIndex" type="string">Index of this transaction within the block (hex).</ResponseField>
+    <ResponseField name="blockHash" type="string">Always `null` for Flashblocks (block not yet finalized).</ResponseField>
+    <ResponseField name="accessList" type="array">EIP-2930 access list entries.</ResponseField>
+    <ResponseField name="r" type="string">ECDSA signature r value.</ResponseField>
+    <ResponseField name="s" type="string">ECDSA signature s value.</ResponseField>
+    <ResponseField name="v" type="string">ECDSA signature v value.</ResponseField>
+    <ResponseField name="yParity" type="string">Signature y-parity for EIP-1559/2930 transactions.</ResponseField>
+    <ResponseField name="gasUsed" type="string">Gas actually used by this transaction (hex). **Required** as of v0.8.0 — previously this field was optional and returned as an integer. Update parsers accordingly.</ResponseField>
+    <ResponseField name="status" type="string">`0x1` for success, `0x0` for failure. Added in v0.8.0.</ResponseField>
+    <ResponseField name="cumulativeGasUsed" type="string">Cumulative gas used in the block up to and including this transaction (hex). Added in v0.8.0.</ResponseField>
+    <ResponseField name="contractAddress" type="string">Address of the deployed contract for contract-creation transactions. `null` otherwise. Added in v0.8.0.</ResponseField>
+    <ResponseField name="logsBloom" type="string">Bloom filter for the logs in this transaction (hex). Added in v0.8.0.</ResponseField>
     <ResponseField name="logs" type="array">Event logs emitted by this transaction. See the [Log Object](/base-chain/api-reference/flashblocks-api/flashblocks-api-overview#log-object) schema.</ResponseField>
-    <ResponseField name="receipt" type="object">
-      Receipt fields added in v0.8.0. See the [Receipt Object](/base-chain/api-reference/flashblocks-api/flashblocks-api-overview#receipt-object) schema for full field descriptions.
-      <Expandable title="Receipt fields">
-        <ResponseField name="type" type="string">Transaction type.</ResponseField>
-        <ResponseField name="status" type="string">`0x1` for success, `0x0` for failure.</ResponseField>
-        <ResponseField name="cumulativeGasUsed" type="string">Cumulative gas used in the block up to this transaction (hex).</ResponseField>
-        <ResponseField name="logs" type="array">Event logs emitted by this transaction.</ResponseField>
-        <ResponseField name="logsBloom" type="string">Bloom filter for the logs.</ResponseField>
-        <ResponseField name="transactionIndex" type="string">Index of this transaction within the block (hex).</ResponseField>
-      </Expandable>
-    </ResponseField>
   </Expandable>
 </ResponseField>
 
@@ -79,33 +94,54 @@ When `full` is `false` (default), each notification delivers a transaction hash:
 }
 ```
 
-When `full` is `true`, each notification delivers the full transaction object with logs and receipt fields:
+When `full` is `true`, each notification delivers the full transaction object. Receipt fields (`gasUsed`, `status`, `cumulativeGasUsed`, `contractAddress`, `logsBloom`) are included directly on the transaction object — there is no nested receipt sub-object:
 
 ```json Notification (full=true)
 {
   "jsonrpc": "2.0",
   "method": "eth_subscription",
   "params": {
-    "subscription": "0x1887ec8b9589ccad00000000000532da",
+    "subscription": "0x4f029cbb4655559c37784ec4f3983914",
     "result": {
-      "hash": "0xabc123...",
-      "from": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-      "to": "0x4200000000000000000000000000000000000006",
-      "value": "0x0",
-      "gas": "0x5208",
-      "gasPrice": "0xfa",
-      "nonce": "0x1",
-      "input": "0x",
       "type": "0x2",
-      "logs": [],
-      "receipt": {
-        "type": "0x2",
-        "status": "0x1",
-        "cumulativeGasUsed": "0x5208",
-        "logs": [],
-        "logsBloom": "0x00000000...",
-        "transactionIndex": "0x3"
-      }
+      "chainId": "0x2105",
+      "nonce": "0x36f0",
+      "gas": "0x26b12",
+      "maxFeePerGas": "0x146a608",
+      "maxPriorityFeePerGas": "0xf4240",
+      "to": "0xda3983e1ea25051b242ec0df4acf18e68d08a212",
+      "value": "0x0",
+      "accessList": [],
+      "input": "0x67243482...",
+      "r": "0x82df735d...",
+      "s": "0x431fa018...",
+      "yParity": "0x1",
+      "v": "0x1",
+      "hash": "0xb2ce9822...",
+      "blockHash": null,
+      "blockNumber": "0x27920be",
+      "transactionIndex": "0xbe",
+      "from": "0x68acbb03...",
+      "gasPrice": "0xaae286",
+      "gasUsed": "0x1a4b2",
+      "status": "0x1",
+      "cumulativeGasUsed": "0x8f3a1",
+      "contractAddress": null,
+      "logsBloom": "0x00200000...",
+      "logs": [
+        {
+          "address": "0xda3983e1ea25051b242ec0df4acf18e68d08a212",
+          "topics": ["0xddf252ad..."],
+          "data": "0x",
+          "blockHash": "0x000...000",
+          "blockNumber": "0x27920be",
+          "blockTimestamp": "0x697c9e5f",
+          "transactionHash": "0xb2ce9822...",
+          "transactionIndex": "0xbe",
+          "logIndex": "0x2d9",
+          "removed": false
+        }
+      ]
     }
   }
 }
@@ -120,6 +156,21 @@ When `full` is `true`, each notification delivers the full transaction object wi
 
 ```json Subscribe (full data)
 {"jsonrpc": "2.0", "id": 1, "method": "eth_subscribe", "params": ["newFlashblockTransactions", true]}
+```
+
+```json Subscribe (filtered by log)
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_subscribe",
+  "params": [
+    "newFlashblockTransactions",
+    {
+      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "topics": ["0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"]
+    }
+  ]
+}
 ```
 
 ```json Subscription ID Response
@@ -144,7 +195,7 @@ ws.on('message', (data) => {
   const msg = JSON.parse(data.toString());
   if (msg.method === 'eth_subscription') {
     const tx = msg.params.result;
-    console.log('Pre-confirmed tx:', tx.hash, '| status:', tx.receipt?.status);
+    console.log('Pre-confirmed tx:', tx.hash, '| status:', tx.status);
   }
 });
 ```

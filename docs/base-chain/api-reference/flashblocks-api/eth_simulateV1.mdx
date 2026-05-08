@@ -50,15 +50,19 @@ Only available on Flashblocks endpoints: `https://mainnet-preconf.base.org` / `h
   Array of simulated block results, one per entry in `blockStateCalls`.
 
   <Expandable title="Block result fields">
+    <ResponseField name="number" type="string">Simulated block number (hex).</ResponseField>
+    <ResponseField name="hash" type="string">Simulated block hash.</ResponseField>
+    <ResponseField name="gasUsed" type="string">Total gas used across all calls in this simulated block (hex).</ResponseField>
+    <ResponseField name="baseFeePerGas" type="string">Base fee per gas for this simulated block (hex).</ResponseField>
     <ResponseField name="calls" type="array">
       Array of individual call results.
 
       <Expandable title="Call result fields">
         <ResponseField name="status" type="string">`"0x1"` for success, `"0x0"` for failure.</ResponseField>
-        <ResponseField name="gasUsed" type="string">Gas used as a hexadecimal integer.</ResponseField>
-        <ResponseField name="returnData" type="string">Hex-encoded return data.</ResponseField>
-        <ResponseField name="logs" type="array">Logs emitted (including ETH transfer logs if `traceTransfers` is `true`).</ResponseField>
-        <ResponseField name="error" type="string">Revert reason if the call failed. Optional.</ResponseField>
+        <ResponseField name="gasUsed" type="string">Gas used by this call (hex).</ResponseField>
+        <ResponseField name="returnData" type="string">Hex-encoded return data from the call.</ResponseField>
+        <ResponseField name="logs" type="array">Logs emitted by this call. Includes ETH transfer logs if `traceTransfers` is `true`.</ResponseField>
+        <ResponseField name="error" type="object">Present if the call reverted. Contains `message` (string) and `code` (number).</ResponseField>
       </Expandable>
     </ResponseField>
   </Expandable>
@@ -97,11 +101,15 @@ curl https://sepolia-preconf.base.org \
   "id": 1,
   "result": [
     {
+      "number": "0x29442bb",
+      "hash": "0xcefc6e6e...",
+      "gasUsed": "0x79ce",
+      "baseFeePerGas": "0xfa",
       "calls": [
         {
           "status": "0x1",
-          "gasUsed": "0x5208",
-          "returnData": "0x",
+          "gasUsed": "0x79ce",
+          "returnData": "0x00000000000000000000000000000000000000000000000000000000011420f9",
           "logs": []
         }
       ]

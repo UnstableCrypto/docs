@@ -103,15 +103,19 @@ Contains the incremental block state changes for this specific Flashblock. Prese
 **The `metadata` object is not stable.** Fields may be added, modified, or removed without prior notice. Do not build production dependencies on it — use the [`diff`](#diff-object) object or query finalized block data via standard RPC instead.
 </Warning>
 
+<Warning>
+**Azul breaking change:** The `new_account_balances` and `receipts` fields are removed from `metadata` as of the [Azul upgrade](/base-chain/protocol-api/specs/upgrades/azul/overview). After activation, the `metadata` object will only contain `block_number`.
+</Warning>
+
 <Card>
 <ParamField path="block_number" type="number">Block number as a decimal integer.</ParamField>
-<ParamField path="new_account_balances" type="object">Map of addresses to their updated ETH balances (hex). Only includes accounts whose balances changed in this Flashblock.</ParamField>
-<ParamField path="receipts" type="object">Map of transaction hashes to their [Receipt](#receipt-object) objects.</ParamField>
+<ParamField path="new_account_balances" type="object">**Removed in Azul.** Map of addresses to their updated ETH balances (hex). Only includes accounts whose balances changed in this Flashblock.</ParamField>
+<ParamField path="receipts" type="object">**Removed in Azul.** Map of transaction hashes to their [Receipt](#receipt-object) objects. Use [`newFlashblockTransactions`](/base-chain/api-reference/flashblocks-api/newFlashblockTransactions) with `full: true` to access receipt fields instead.</ParamField>
 </Card>
 
 ### Receipt Object
 
-The abbreviated transaction receipt included in `metadata.receipts`. Check the `type` field to determine transaction type.
+The abbreviated transaction receipt included in `metadata.receipts`. **Removed from `metadata` in the Azul upgrade.** Receipt fields are now available on individual transaction objects via the [`newFlashblockTransactions`](/base-chain/api-reference/flashblocks-api/newFlashblockTransactions) subscription with `full: true`.
 
 <Card>
 <ParamField path="type" type="string">Transaction type: `0x0` Legacy, `0x1` Access List, `0x2` EIP-1559, `0x7e` Deposit (L1→L2).</ParamField>
@@ -124,13 +128,26 @@ The abbreviated transaction receipt included in `metadata.receipts`. Check the `
 
 ### Log Object
 
+Log objects appear in `newFlashblockTransactions` (full mode) and in `metadata.receipts` (infrastructure stream, pre-Azul).
+
 <Card>
 <ParamField path="address" type="string">Contract address that emitted the event.</ParamField>
 <ParamField path="topics" type="string[]">Array of indexed event parameters. Topic 0 is typically the event signature hash.</ParamField>
 <ParamField path="data" type="string">ABI-encoded non-indexed event parameters.</ParamField>
+<ParamField path="blockHash" type="string">Hash of the partial block at time of pre-confirmation. Note: this is a Flashblock hash, not a final block hash.</ParamField>
+<ParamField path="blockNumber" type="string">Block number this log belongs to (hex).</ParamField>
+<ParamField path="blockTimestamp" type="string">Unix timestamp of the block (hex).</ParamField>
+<ParamField path="transactionHash" type="string">Hash of the transaction that emitted this log.</ParamField>
+<ParamField path="transactionIndex" type="string">Index of the transaction within the block (hex).</ParamField>
+<ParamField path="logIndex" type="string">Index of this log within the block (hex).</ParamField>
+<ParamField path="removed" type="boolean">Always `false` for Flashblocks logs. Would be `true` if a reorg removed the log, which does not apply to Flashblocks.</ParamField>
 </Card>
 
 ### Complete Examples
+
+<Note>
+The examples below show the pre-Azul `metadata` format. After the [Azul upgrade](/base-chain/protocol-api/specs/upgrades/azul/overview), `metadata.new_account_balances` and `metadata.receipts` will no longer be present in the stream.
+</Note>
 
 **Index 0** — includes the `base` object (block header):
 
