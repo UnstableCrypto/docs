@@ -30,12 +30,12 @@
 ## API Reference
 - [Overview](https://docs.base.org/base-chain/api-reference/rpc-overview.md) — Networks, endpoints, request/response format, and full method index
 - [Ethereum JSON-RPC API](https://docs.base.org/base-chain/api-reference/ethereum-json-rpc-api/eth_blockNumber.md) — Core Ethereum protocol methods (eth_, net_, web3_)
-- [Flashblocks API](https://docs.base.org/base-chain/api-reference/flashblocks-api/flashblocks-api-overview.md) — Flashblocks-specific methods, WebSocket subscriptions, and infrastructure stream schema
+- [Flashblocks API](https://docs.base.org/base-chain/api-reference/flashblocks-api/flashblocks-api-overview.md) — Flashblocks-specific methods, WebSocket subscriptions (including receipt fields in newFlashblockTransactions as of v0.8.0), and infrastructure stream schema
 - [Debug API](https://docs.base.org/base-chain/api-reference/debug-api/debug_traceTransaction.md) — EVM execution tracing and block replay
 
 ## Node Operators
 - [Run a Base Node](https://docs.base.org/base-chain/node-operators/run-a-base-node.md) — Setup and operations guide
-- [Base Azul Upgrade](https://docs.base.org/base-chain/node-operators/base-v1-upgrade.md) — Migrate to base-reth-node and base-consensus for Azul
+- [Base Azul Upgrade](https://docs.base.org/base-chain/node-operators/base-v1-upgrade.md) — Migrate to base-reth-node and base-consensus for Azul; requires v0.8.0+
 - [Performance Tuning](https://docs.base.org/base-chain/node-operators/performance-tuning.md) — Optimize node performance
 - [Snapshots](https://docs.base.org/base-chain/node-operators/snapshots.md) — Snapshot sync to speed up initial node setup
 - [Troubleshooting](https://docs.base.org/base-chain/node-operators/troubleshooting.md) — Diagnose and fix common node issues
