@@ -4,14 +4,14 @@ sidebarTitle: 'newFlashblockTransactions'
 description: 'Subscribe to receive each transaction as it is pre-confirmed into a Flashblock. Only available on Flashblocks WebSocket endpoints.'
 ---
 
-Subscribe via `eth_subscribe` to receive each transaction as it is pre-confirmed into a Flashblock. Pass `true` as the second parameter to receive full transaction and log data.
+Subscribe via `eth_subscribe` to receive each transaction as it is pre-confirmed into a Flashblock. Pass `true` as the second parameter to receive the full transaction object, associated logs, and receipt fields.
 
 <Info>
 Only available on Flashblocks WebSocket endpoints: `wss://mainnet-preconf.base.org` / `wss://sepolia-preconf.base.org`.
 </Info>
 
 <Note>
-Requires [base/base](https://github.com/base/base) minimum client version v0.3.1.
+Requires [base/base](https://github.com/base/base) minimum client version v0.8.0. Receipt fields in `full` mode were added in v0.8.0.
 </Note>
 
 <Warning>
@@ -25,14 +25,91 @@ Each subscription emits **one item per WebSocket message**. Events arrive approx
 </ParamField>
 
 <ParamField body="full" type="boolean">
-  If `true`, each notification includes the full transaction object and associated logs. Defaults to `false` (minimal data only).
+  If `true`, each notification includes the full transaction object, associated logs, and receipt fields (`type`, `status`, `cumulativeGasUsed`, `logs`, `logsBloom`, `transactionIndex`). Defaults to `false` (transaction hash only).
 </ParamField>
 
 ## Returns
 
-<ResponseField name="result" type="string">
-  Hex-encoded subscription ID.
+The initial `eth_subscribe` response returns a hex-encoded subscription ID string. After that, the node pushes one notification per WebSocket message for each pre-confirmed transaction.
+
+**When `full` is `false` (default):** each notification's `result` is a transaction hash string.
+
+**When `full` is `true`:** each notification's `result` is a transaction object with the following fields:
+
+<ResponseField name="result" type="object">
+  The pre-confirmed transaction object. Only present when `full` is `true`; otherwise `result` is a transaction hash string.
+
+  <Expandable title="Transaction fields">
+    <ResponseField name="hash" type="string">Transaction hash.</ResponseField>
+    <ResponseField name="from" type="string">Sender address.</ResponseField>
+    <ResponseField name="to" type="string">Recipient address. `null` for contract deployments.</ResponseField>
+    <ResponseField name="value" type="string">ETH value transferred (hex).</ResponseField>
+    <ResponseField name="gas" type="string">Gas limit (hex).</ResponseField>
+    <ResponseField name="gasPrice" type="string">Gas price (hex).</ResponseField>
+    <ResponseField name="nonce" type="string">Sender nonce (hex).</ResponseField>
+    <ResponseField name="input" type="string">ABI-encoded calldata.</ResponseField>
+    <ResponseField name="type" type="string">Transaction type: `0x0` Legacy, `0x1` Access List, `0x2` EIP-1559.</ResponseField>
+    <ResponseField name="logs" type="array">Event logs emitted by this transaction. See the [Log Object](/base-chain/api-reference/flashblocks-api/flashblocks-api-overview#log-object) schema.</ResponseField>
+    <ResponseField name="receipt" type="object">
+      Receipt fields added in v0.8.0. See the [Receipt Object](/base-chain/api-reference/flashblocks-api/flashblocks-api-overview#receipt-object) schema for full field descriptions.
+      <Expandable title="Receipt fields">
+        <ResponseField name="type" type="string">Transaction type.</ResponseField>
+        <ResponseField name="status" type="string">`0x1` for success, `0x0` for failure.</ResponseField>
+        <ResponseField name="cumulativeGasUsed" type="string">Cumulative gas used in the block up to this transaction (hex).</ResponseField>
+        <ResponseField name="logs" type="array">Event logs emitted by this transaction.</ResponseField>
+        <ResponseField name="logsBloom" type="string">Bloom filter for the logs.</ResponseField>
+        <ResponseField name="transactionIndex" type="string">Index of this transaction within the block (hex).</ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
 </ResponseField>
+
+## Notification Format
+
+When `full` is `false` (default), each notification delivers a transaction hash:
+
+```json Notification (default)
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0x1887ec8b9589ccad00000000000532da",
+    "result": "0xabc123..."
+  }
+}
+```
+
+When `full` is `true`, each notification delivers the full transaction object with logs and receipt fields:
+
+```json Notification (full=true)
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0x1887ec8b9589ccad00000000000532da",
+    "result": {
+      "hash": "0xabc123...",
+      "from": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "to": "0x4200000000000000000000000000000000000006",
+      "value": "0x0",
+      "gas": "0x5208",
+      "gasPrice": "0xfa",
+      "nonce": "0x1",
+      "input": "0x",
+      "type": "0x2",
+      "logs": [],
+      "receipt": {
+        "type": "0x2",
+        "status": "0x1",
+        "cumulativeGasUsed": "0x5208",
+        "logs": [],
+        "logsBloom": "0x00000000...",
+        "transactionIndex": "0x3"
+      }
+    }
+  }
+}
+```
 
 ## Example
 
@@ -47,5 +124,28 @@ Each subscription emits **one item per WebSocket message**. Events arrive approx
 
 ```json Subscription ID Response
 {"jsonrpc": "2.0", "id": 1, "result": "0x1887ec8b9589ccad00000000000532da"}
+```
+
+```javascript JavaScript
+import WebSocket from 'ws';
+
+const ws = new WebSocket('wss://mainnet-preconf.base.org');
+
+ws.on('open', () => {
+  ws.send(JSON.stringify({
+    jsonrpc: '2.0',
+    method: 'eth_subscribe',
+    params: ['newFlashblockTransactions', true],
+    id: 1
+  }));
+});
+
+ws.on('message', (data) => {
+  const msg = JSON.parse(data.toString());
+  if (msg.method === 'eth_subscription') {
+    const tx = msg.params.result;
+    console.log('Pre-confirmed tx:', tx.hash, '| status:', tx.receipt?.status);
+  }
+});
 ```
 </CodeGroup>

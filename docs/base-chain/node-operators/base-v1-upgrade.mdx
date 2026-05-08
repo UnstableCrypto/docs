@@ -22,8 +22,8 @@ For full details on what's included, see the [Azul specification](/base-chain/sp
 
 | Layer | Software | Version |
 |-------|----------|---------|
-| Execution (EL) | [`base-reth-node`](https://github.com/base/base/releases/tag/v0.7.0) | v0.7.0+ |
-| Consensus (CL) | [`base-consensus`](https://github.com/base/base/releases/tag/v0.7.0) | v0.7.0+ |
+| Execution (EL) | [`base-reth-node`](https://github.com/base/base/releases/tag/v0.8.0) | v0.8.0+ |
+| Consensus (CL) | [`base-consensus`](https://github.com/base/base/releases/tag/v0.8.0) | v0.8.0+ |
 
 <Note>
 Both clients are available from the [base/node](https://github.com/base/node/releases) repository, where most configuration is preconfigured and can be overridden via environment variables. See the `.env.mainnet` and `.env.sepolia` files for the full list of configurable options.
@@ -55,7 +55,7 @@ If you are already running OP Reth via [base/node](https://github.com/base/node)
    docker compose up
    ```
 
-4. Verify client version: `web3_clientVersion` should include `base` in the version string (e.g. `reth/v1.11.3-.../base/v0.7.0`)
+4. Verify client version: `web3_clientVersion` should include `base` in the version string (e.g. `reth/v1.11.3-.../base/v0.8.0`)
 
 ### Migrating from another client
 
@@ -137,6 +137,7 @@ If you use [base/node](https://github.com/base/node), most variables are already
 | `OP_NODE_RPC_PORT` | `BASE_NODE_RPC_PORT` |
 | `OP_NODE_RPC_ENABLE_ADMIN` | `BASE_NODE_RPC_ENABLE_ADMIN` |
 | `OP_NODE_RPC_ADMIN_STATE` | `BASE_NODE_RPC_ADMIN_STATE` |
+| — | `BASE_NODE_RPC_CONCURRENCY` |
 | `OP_NODE_SAFEDB_PATH` | `BASE_NODE_SAFEDB_PATH` |
 | `OP_NODE_SYNCMODE` | — |
 | `OP_NODE_VERIFIER_L1_CONFS` | — |
@@ -148,6 +149,12 @@ If you use [base/node](https://github.com/base/node), most variables are already
 | `OP_NODE_P2P_STATIC` | — |
 | `OP_NODE_P2P_DISABLE` | — |
 | `OP_NODE_P2P_NAT` | — |
+
+### Notable base-consensus Options (v0.8.0+)
+
+**`BASE_NODE_RPC_CONCURRENCY`** — Sets the maximum number of RPC queries processed in parallel. Increase this on nodes serving high request volumes to improve throughput. The default is conservative; tune it based on your available CPU and memory.
+
+**`BASE_NODE_L2_ENGINE_RPC`** — Now accepts WebSocket schemes (`ws://` or `wss://`) in addition to HTTP for the Engine API connection. Use a WebSocket scheme when your execution client is configured to serve the Engine API over WebSocket.
 
 ## FAQ
 
