@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./Basemark.png" alt="Base logo" width="480" />
+<img src="./Basemark.png" alt="Unstable logo" width="480" />
 </p>
 
 <!-- Badge row 1 - status -->
@@ -23,7 +23,7 @@
 [![GitHub pull requests by-label](https://img.shields.io/github/issues-pr-raw/base/docs)](https://github.com/base/docs/pulls)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/base/docs.svg)](https://github.com/base/docs/issues)
 
-Base Docs are community-managed. We welcome and encourage contributions from everyone to keep these docs accurate, helpful, and up to date.
+Unstable Docs are community-managed. We welcome and encourage contributions from everyone to keep these docs accurate, helpful, and up to date.
 
 > Note: This repository powers the public Base documentation site. Content lives under `docs/`.
 
@@ -58,7 +58,7 @@ npx mint dev
 
 ## How to contribute
 
-1. **Fork and branch**: Fork `base/docs` and create a descriptive branch for your change.
+1. **Fork and branch**: Fork `unstable/docs` and create a descriptive branch for your change.
 2. **Edit content in `docs/`**: Follow the structure and style guidelines below. Preview locally with the Mint CLI.
 3. **Open a pull request**: Provide a clear summary and links to related pages. The docs team and community will review.
 
@@ -70,7 +70,7 @@ npx mint dev
 
 > Warning: Do not create new top-level sections. Place all new content within existing folders under `docs/`.
 
-The Base documentation is organized into established sections (for example: `get-started/`, `learn/`, `base-account/`, `base-app/`, `base-chain/`, `cookbook/`, `mini-apps/`, `onchainkit/`). Fit new content into the most relevant existing section.
+The Unstable documentation is organized into established sections (for example: `get-started/`, `learn/`, `base-account/`, `base-app/`, `base-chain/`, `cookbook/`, `mini-apps/`, `onchainkit/`). Fit new content into the most relevant existing section.
 
 ### Navigation policy
 

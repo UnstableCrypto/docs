@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
-  "name": "Base Documentation",
+  "name": "Unstable Documentation",
   "colors": {
-    "primary": "#0000ff",
-    "light": "#578BFA",
-    "dark": "#578BFA"
+    "primary": "#0a0a0a",
+    "light": "#e8ff47",
+    "dark": "#e8ff47"
   },
   "favicon": "/logo/favicon.png",
   "contextual": {
@@ -22,7 +22,7 @@
   "seo": {
     "metatags": {
       "og:type": "website",
-      "og:site_name": "Base documentation"
+      "og:site_name": "Unstable documentation"
     }
   },
   "navigation": {

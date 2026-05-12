@@ -1,6 +1,6 @@
-# Base Documentation
+# Unstable Documentation
 
-Technical documentation for Base (Ethereum L2). Built with Mintlify.
+Technical documentation for Unstable (Ethereum L2). Built with Mintlify.
 
 ## Commands
 
@@ -20,7 +20,7 @@ docs/
 ├── base-chain/       # Network, nodes, tools
 ├── base-account/     # Smart Wallet SDK
 ├── ai-agents/        # Agent development
-├── apps/             # Apps on Base (MiniKit, guides)
+├── apps/             # Apps on Unstable (MiniKit, guides)
 ├── onchainkit/       # React components (versioned)
 ├── images/           # Assets by topic
 ├── snippets/         # Reusable MDX components
