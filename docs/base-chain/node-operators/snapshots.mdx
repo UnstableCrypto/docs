@@ -23,10 +23,10 @@ These steps assume you are in the cloned `node` directory (the one containing `d
 
     | Network  | Snapshot Type | Download Command |
     | -------- | ------------- | ---------------- |
-    | Testnet  | Archive (recommended)| `aria2c -c -x 16 -s 16 "https://sepolia-reth-archive-snapshots.base.org/$(curl -s https://sepolia-reth-archive-snapshots.base.org/latest)"` |
-    | Testnet  | Pruned               | `aria2c -c -x 16 -s 16 "https://sepolia-reth-pruned-snapshots.base.org/$(curl -s https://sepolia-reth-pruned-snapshots.base.org/latest)"` |
-    | Mainnet  | Archive (recommended)| `aria2c -c -x 16 -s 16 "https://mainnet-reth-archive-snapshots.base.org/$(curl -s https://mainnet-reth-archive-snapshots.base.org/latest)"` |
-    | Mainnet  | Pruned               | `aria2c -c -x 16 -s 16 "https://mainnet-reth-pruned-snapshots.base.org/$(curl -s https://mainnet-reth-pruned-snapshots.base.org/latest)"` |
+    | Testnet  | Archive (recommended)| `aria2c -c -x 16 -s 16 "https://sepolia-reth-archive-snapshots.unstable.org/$(curl -s https://sepolia-reth-archive-snapshots.unstable.org/latest)"` |
+    | Testnet  | Pruned               | `aria2c -c -x 16 -s 16 "https://sepolia-reth-pruned-snapshots.unstable.org/$(curl -s https://sepolia-reth-pruned-snapshots.unstable.org/latest)"` |
+    | Mainnet  | Archive (recommended)| `aria2c -c -x 16 -s 16 "https://mainnet-reth-archive-snapshots.unstable.org/$(curl -s https://mainnet-reth-archive-snapshots.unstable.org/latest)"` |
+    | Mainnet  | Pruned               | `aria2c -c -x 16 -s 16 "https://mainnet-reth-pruned-snapshots.unstable.org/$(curl -s https://mainnet-reth-pruned-snapshots.unstable.org/latest)"` |
 
     <Note>
     Ensure you have enough free disk space to download the snapshot archive (`.tar.gz` / `.tar.zst` file) _and_ extract its contents. The extracted data will be significantly larger than the archive.
@@ -69,7 +69,7 @@ If you are running the [historical proofs ExEx](/base-chain/node-operators/run-a
 
 | Network | Download Command |
 | ------- | ---------------- |
-| Testnet | `aria2c -c -x 16 -s 16 "https://sepolia-reth-proofs-snapshots.base.org/$(curl -s https://sepolia-reth-proofs-snapshots.base.org/latest)"` |
-| Mainnet | `aria2c -c -x 16 -s 16 "https://mainnet-reth-proofs-snapshots.base.org/$(curl -s https://mainnet-reth-proofs-snapshots.base.org/latest)"` |
+| Testnet | `aria2c -c -x 16 -s 16 "https://sepolia-reth-proofs-snapshots.unstable.org/$(curl -s https://sepolia-reth-proofs-snapshots.unstable.org/latest)"` |
+| Mainnet | `aria2c -c -x 16 -s 16 "https://mainnet-reth-proofs-snapshots.unstable.org/$(curl -s https://mainnet-reth-proofs-snapshots.unstable.org/latest)"` |
 
 The restore process is the same as above — follow the [Restoring from Snapshot](#restoring-from-snapshot) steps using this archive instead.

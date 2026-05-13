@@ -5,7 +5,7 @@ keywords: ["AI agents", "LLM", "MCP", "Model Context Protocol", "llms.txt", "ski
 ---
 
 <Note>
-Fetch the complete documentation index at [https://docs.base.org/llms.txt](https://docs.base.org/llms.txt).
+Fetch the complete documentation index at [https://docs.unstable.org/llms.txt](https://docs.unstable.org/llms.txt).
 Use this file to discover all available pages before exploring further.
 </Note>
 
@@ -23,18 +23,18 @@ A live connection lets your assistant search and read Base docs on demand, so it
 
 <CodeGroup>
 ```sh Claude Code
-claude mcp add --transport http base-docs https://docs.base.org/mcp
+claude mcp add --transport http base-docs https://docs.unstable.org/mcp
 ```
 
 ```sh Codex CLI
-codex mcp add base-docs --url https://docs.base.org/mcp
+codex mcp add base-docs --url https://docs.unstable.org/mcp
 ```
 
 ```json Cursor / manual config
 {
   "mcpServers": {
     "base-docs": {
-      "url": "https://docs.base.org/mcp"
+      "url": "https://docs.unstable.org/mcp"
     }
   }
 }
@@ -49,13 +49,13 @@ Use these when you want to load context in a single fetch rather than maintainin
 
 | File | What it contains | When to use it |
 | --- | --- | --- |
-| [`llms.txt`](https://docs.base.org/llms.txt) | Page index with titles and descriptions | Discovering which docs exist before going deeper |
-| [`llms-full.txt`](https://docs.base.org/llms-full.txt) | Complete documentation in one file | Giving an assistant broad context in one shot |
+| [`llms.txt`](https://docs.unstable.org/llms.txt) | Page index with titles and descriptions | Discovering which docs exist before going deeper |
+| [`llms-full.txt`](https://docs.unstable.org/llms-full.txt) | Complete documentation in one file | Giving an assistant broad context in one shot |
 
 Every docs page is also available as plain Markdown. Append `.md` to any URL:
 
 ```txt
-https://docs.base.org/get-started/resources-for-ai-agents.md
+https://docs.unstable.org/get-started/resources-for-ai-agents.md
 ```
 
 ### Skills
@@ -86,7 +86,7 @@ Once your agent has docs context, point it at the section that matches what you'
 
 Copy these into your assistant to test that everything is working:
 
-- "Deploy my ERC-20 contract to Base Sepolia and verify it on Basescan."
+- "Deploy my ERC-20 contract to Unstable Sepolia and verify it on Basescan."
 - "Add Sign in with Base to my Next.js app using wagmi."
 - "Set up a wallet for my AI agent that can hold USDC and sign transactions autonomously."
 - "Create an app with a USDC payment flow."

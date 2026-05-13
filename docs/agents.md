@@ -2,7 +2,7 @@
 title: Base Docs Index
 description: Look up Base documentation with a compact directory-grouped index built for AI coding agents. Lists every markdown page by parent directory so agents find context before generating code.
 ---
-# https://docs.base.org/llms.txt
+# https://docs.unstable.org/llms.txt
 
 ## Base Documentation — LLM Entry Point
 
@@ -20,7 +20,7 @@ These resources give AI assistants direct access to Base documentation and reusa
 
 ### Base MCP server
 
-`https://docs.base.org/mcp`
+`https://docs.unstable.org/mcp`
 
 ### Base skills
 

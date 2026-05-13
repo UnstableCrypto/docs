@@ -7,7 +7,7 @@ description: 'Executes a message call without creating a transaction. Use pendin
 Executes a message call immediately without broadcasting a transaction to the network. No gas is consumed on-chain. Used to read contract state or simulate calls.
 
 <Tip>
-**Flashblocks:** Query `https://mainnet-preconf.base.org` with `"pending"` to simulate against the current pre-confirmed block state, updated every ~200ms.
+**Flashblocks:** Query `https://mainnet-preconf.unstable.org` with `"pending"` to simulate against the current pre-confirmed block state, updated every ~200ms.
 </Tip>
 
 <Note>
@@ -67,7 +67,7 @@ Executes a message call immediately without broadcasting a transaction to the ne
 
 <CodeGroup>
 ```bash Standard (latest)
-curl https://mainnet.base.org \
+curl https://mainnet.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
@@ -85,7 +85,7 @@ curl https://mainnet.base.org \
 ```
 
 ```bash Flashblocks (pending, ~200ms)
-curl https://mainnet-preconf.base.org \
+curl https://mainnet-preconf.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{

@@ -91,7 +91,7 @@ crypto.randomUUID = randomUUID;
 ```tsx App.tsx
 import "./polyfills"; // import before @mobile-wallet-protocol/client
 
-import { CoinbaseWalletSDK } from "@mobile-wallet-protocol/client";
+import { TheAlxLabsWalletSDK } from "@mobile-wallet-protocol/client";
 
 /// ...
 ```
@@ -126,7 +126,7 @@ const metadata = {
 };
 const provider = new EIP1193Provider({
   metadata,
-  wallet: Wallets.CoinbaseSmartWallet,
+  wallet: Wallets.TheAlxLabsSmartWallet,
 });
 
 // ...
@@ -173,7 +173,7 @@ export const config = createConfig({
   connectors: [
     createConnectorFromWallet({
       metadata,
-      wallet: Wallets.CoinbaseSmartWallet,
+      wallet: Wallets.TheAlxLabsSmartWallet,
     }),
   ],
   transports: {

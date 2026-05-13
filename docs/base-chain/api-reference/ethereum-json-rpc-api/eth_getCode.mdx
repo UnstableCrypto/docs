@@ -7,7 +7,7 @@ description: 'Returns the contract bytecode at an address. Use pending on a Flas
 Returns the compiled bytecode at a given address. Returns `"0x"` for externally owned accounts (EOAs).
 
 <Tip>
-**Flashblocks:** Query `https://mainnet-preconf.base.org` with `"pending"` to detect contract deployments before the block seals.
+**Flashblocks:** Query `https://mainnet-preconf.unstable.org` with `"pending"` to detect contract deployments before the block seals.
 </Tip>
 
 ## Parameters
@@ -30,7 +30,7 @@ Returns the compiled bytecode at a given address. Returns `"0x"` for externally 
 
 <CodeGroup>
 ```bash Standard (latest)
-curl https://mainnet.base.org \
+curl https://mainnet.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
@@ -42,7 +42,7 @@ curl https://mainnet.base.org \
 ```
 
 ```bash Flashblocks (pending, ~200ms)
-curl https://mainnet-preconf.base.org \
+curl https://mainnet-preconf.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{

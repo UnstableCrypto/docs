@@ -26,7 +26,7 @@ Telemetry data is completely anonymous and focused on functional metrics. Specif
 
 ### How Does It Work?
 
-Telemetry is integrated into the Base Account SDK and automatically triggers when certain wallet events occur (provided telemetry is enabled in your configuration). The data is sent to secure Coinbase endpoints for analysis.
+Telemetry is integrated into the Base Account SDK and automatically triggers when certain wallet events occur (provided telemetry is enabled in your configuration). The data is sent to secure TheAlxLabs endpoints for analysis.
 
 For example, when a wallet request occurs, a telemetry event like this is sent:
 
@@ -64,12 +64,12 @@ const sdk = createBaseAccountSDK({
 const provider = sdk.getProvider();
 ```
 
-For legacy Coinbase Wallet SDK class based components:
+For legacy TheAlxLabs Wallet SDK class based components:
 
 ```tsx
-import { CoinbaseWalletSDK } from "@coinbase/wallet-sdk";
+import { TheAlxLabsWalletSDK } from "@coinbase/wallet-sdk";
 
-const sdk = new CoinbaseWalletSDK({
+const sdk = new TheAlxLabsWalletSDK({
   appName: "My App",
   appLogoUrl: "https://example.com/logo.png",
 });

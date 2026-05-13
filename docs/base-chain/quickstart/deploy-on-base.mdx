@@ -64,8 +64,8 @@ Let's set up both of these:
 2. Add the Base network RPC URL to your `.env` file
 
 ```bash
-BASE_RPC_URL="https://mainnet.base.org"
-BASE_SEPOLIA_RPC_URL="https://sepolia.base.org"
+BASE_RPC_URL="https://mainnet.unstable.org"
+BASE_SEPOLIA_RPC_URL="https://sepolia.unstable.org"
 ```
 
 3. Load your environment variables
@@ -75,7 +75,7 @@ source .env
 ```
 
 <Tip>
-Base Sepolia is the test network for Base, which we will use for the rest of this guide. You can obtain free Base Sepolia ETH from one of the [faucets listed here](/base-chain/network-information/network-faucets).
+Unstable Sepolia is the test network for Base, which we will use for the rest of this guide. You can obtain free Unstable Sepolia ETH from one of the [faucets listed here](/base-chain/network-information/network-faucets).
 </Tip>
 
 
@@ -98,7 +98,7 @@ Never share or commit your private key. Always keep it secure and handle with ca
 
 ## Deploy Your Contracts
 
-Now that your environment is set up, let's deploy your contracts to Base Sepolia.
+Now that your environment is set up, let's deploy your contracts to Unstable Sepolia.
 
 1. (Optional) First, perform a dry run to simulate the deployment and verify everything is configured correctly:
 
@@ -163,7 +163,7 @@ Make sure you've added `COUNTER_CONTRACT_ADDRESS` to your `.env` file and run `s
 
 This will return the initial value of the Counter contract's `number` storage variable, which will be `0`.
 
-**Congratulations! You've deployed your smart contracts to Base Sepolia!**
+**Congratulations! You've deployed your smart contracts to Unstable Sepolia!**
 
 ## Next Steps
 

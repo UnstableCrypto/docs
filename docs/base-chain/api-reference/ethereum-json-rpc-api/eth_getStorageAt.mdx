@@ -7,7 +7,7 @@ description: 'Returns the value of a storage slot at an address. Use pending on 
 Returns the value from a storage position at a given address.
 
 <Tip>
-**Flashblocks:** Query `https://mainnet-preconf.base.org` with `"pending"` to read storage updated by pre-confirmed transactions every ~200ms.
+**Flashblocks:** Query `https://mainnet-preconf.unstable.org` with `"pending"` to read storage updated by pre-confirmed transactions every ~200ms.
 </Tip>
 
 ## Parameters
@@ -34,7 +34,7 @@ Returns the value from a storage position at a given address.
 
 <CodeGroup>
 ```bash Standard (latest)
-curl https://mainnet.base.org \
+curl https://mainnet.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
@@ -46,7 +46,7 @@ curl https://mainnet.base.org \
 ```
 
 ```bash Flashblocks (pending, ~200ms)
-curl https://mainnet-preconf.base.org \
+curl https://mainnet-preconf.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{

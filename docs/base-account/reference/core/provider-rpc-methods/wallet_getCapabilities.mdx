@@ -257,7 +257,7 @@ async function buildTransaction(userAddress: string, calls: any[]) {
   if (baseCapabilities.paymasterService?.supported) {
     txParams.capabilities = {
       paymasterService: {
-        url: "https://paymaster.base.org/api/v1/sponsor"
+        url: "https://paymaster.unstable.org/api/v1/sponsor"
       }
     };
   }
@@ -314,7 +314,7 @@ const result = await provider.request({
     }],
     capabilities: {
       paymasterService: capabilities["0x2105"]?.paymasterService?.supported ? {
-        url: "https://paymaster.base.org/api/v1/sponsor"
+        url: "https://paymaster.unstable.org/api/v1/sponsor"
       } : undefined
     }
   }]

@@ -8,7 +8,7 @@ This guide walks you through building an onchain tally app on Base from scratch.
 ## What you'll build
 
 - A Next.js app that connects wallets and handles connection state
-- Contract reads and writes against a deployed counter on Base Sepolia
+- Contract reads and writes against a deployed counter on Unstable Sepolia
 - Batch transaction support for smart wallets via EIP-5792
 - A graceful fallback for wallets that do not support batching
 
@@ -30,7 +30,7 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
   </Step>
 
   <Step title="Configure Wagmi for Base">
-    Create the Wagmi config with Base Sepolia, then wrap your app in the required providers.
+    Create the Wagmi config with Unstable Sepolia, then wrap your app in the required providers.
 
     ```typescript config/wagmi.ts lines expandable
     import { http, createConfig, createStorage, cookieStorage } from 'wagmi'
@@ -48,7 +48,7 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
       storage: createStorage({ storage: cookieStorage }),
       ssr: true,
       transports: {
-        [baseSepolia.id]: http('https://sepolia.base.org'),
+        [baseSepolia.id]: http('https://sepolia.unstable.org'),
       },
     })
 
@@ -148,14 +148,14 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
     The `--no-git` flag prevents Foundry from initialising a nested git repository inside your project.
     </Note>
 
-    Configure Base Sepolia in your environment file.
+    Configure Unstable Sepolia in your environment file.
 
     ```bash contracts/.env
-    BASE_SEPOLIA_RPC_URL="https://sepolia.base.org"
+    BASE_SEPOLIA_RPC_URL="https://sepolia.unstable.org"
     ```
 
     <Note>
-    If `https://sepolia.base.org` is unreachable, use an alternative public endpoint such as `https://base-sepolia-rpc.publicnode.com`. For production apps, use a dedicated RPC provider.
+    If `https://sepolia.unstable.org` is unreachable, use an alternative public endpoint such as `https://base-sepolia-rpc.publicnode.com`. For production apps, use a dedicated RPC provider.
     </Note>
 
     Load the variable and import your deployer key securely.
@@ -193,7 +193,7 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
     cast call <CONTRACT_ADDRESS> "number()(uint256)" --rpc-url $BASE_SEPOLIA_RPC_URL
     ```
 
-    You need testnet ETH to pay for deployment. Get free Base Sepolia ETH from one of the [network faucets](/base-chain/network-information/network-faucets).
+    You need testnet ETH to pay for deployment. Get free Unstable Sepolia ETH from one of the [network faucets](/base-chain/network-information/network-faucets).
   </Step>
 
   <Step title="Read contract data">
@@ -294,7 +294,7 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
       if (chainId !== baseSepolia.id) {
         return (
           <button onClick={() => switchChain({ chainId: baseSepolia.id })}>
-            {isSwitching ? 'Switching...' : 'Switch to Base Sepolia'}
+            {isSwitching ? 'Switching...' : 'Switch to Unstable Sepolia'}
           </button>
         )
       }
@@ -429,7 +429,7 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
       if (chainId !== baseSepolia.id) {
         return (
           <button onClick={() => switchChain({ chainId: baseSepolia.id })}>
-            {isSwitching ? 'Switching...' : 'Switch to Base Sepolia'}
+            {isSwitching ? 'Switching...' : 'Switch to Unstable Sepolia'}
           </button>
         )
       }
@@ -481,7 +481,7 @@ Base is a fast, low-cost Ethereum L2 built to bring the next billion users oncha
       if (chainId !== baseSepolia.id) {
         return (
           <button onClick={() => switchChain({ chainId: baseSepolia.id })}>
-            {isSwitching ? 'Switching...' : 'Switch to Base Sepolia'}
+            {isSwitching ? 'Switching...' : 'Switch to Unstable Sepolia'}
           </button>
         )
       }

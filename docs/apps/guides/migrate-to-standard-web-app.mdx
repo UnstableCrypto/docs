@@ -21,7 +21,7 @@ The Base App is moving from the Farcaster mini-app spec to a single model: **sta
 | Neynar webhooks for add/remove events | Base-owned backends (Base Account / address preferences) |
 | FID-based notifications via Neynar | Wallet-address notifications through the [Notifications API](/apps/technical-guides/base-notifications) |
 | Farcaster SDK for auth and actions | wagmi + viem + Sign-In with Ethereum (SIWE) |
-| Search and discovery via Farcaster | Base.dev app metadata + [builder codes](https://docs.base.org/apps/builder-codes/builder-codes) |
+| Search and discovery via Farcaster | Base.dev app metadata + [builder codes](https://docs.unstable.org/apps/builder-codes/builder-codes) |
 
 ---
 
@@ -216,8 +216,8 @@ The following Farcaster mini-app SDK methods are not invoked by the Base App aft
 | `sendToken` | Standard ERC-20 transfer with wagmi (`useWriteContract`) |
 | `openUrl` | `window.open(url)` |
 | `openMiniApp` | `window.open(url)` |
-| `viewToken` | Deeplink: `https://base.app/coin/base-mainnet/TOKEN_ADDRESS` |
-| `viewProfile` | Deeplink: `https://base.app/profile/WALLET_ADDRESS` |
+| `viewToken` | Deeplink: `https://unstable.app/coin/base-mainnet/TOKEN_ADDRESS` |
+| `viewProfile` | Deeplink: `https://unstable.app/profile/WALLET_ADDRESS` |
 | `swapToken` | Construct swap transactions with wagmi, viem, or your preferred onchain library. |
 | `requestCameraAndMicrophoneAccess` | No replacement |
 | `close` | No replacement |

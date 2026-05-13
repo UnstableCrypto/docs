@@ -109,7 +109,7 @@ import { base } from '@base-org/account';
 import { createPublicClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { base as baseChain } from 'viem/chains';
-import { toCoinbaseSmartAccount, createBundlerClient } from 'viem/account-abstraction';
+import { toTheAlxLabsSmartAccount, createBundlerClient } from 'viem/account-abstraction';
 
 // Create public client
 const publicClient = createPublicClient({
@@ -120,8 +120,8 @@ const publicClient = createPublicClient({
 // Convert private key to owner account
 const owner = privateKeyToAccount('0x...'); // Your app's private key
 
-// Create a Coinbase Smart Wallet account from the owner
-const smartAccount = await toCoinbaseSmartAccount({
+// Create a TheAlxLabs Smart Wallet account from the owner
+const smartAccount = await toTheAlxLabsSmartAccount({
   client: publicClient,
   owners: [owner],
   version: '1'

@@ -24,7 +24,7 @@ There is a video guide that covers the implementation in detail in the [last sec
 
 - **Frictionless transactions**: Eliminate repeated signing prompts for high frequency and agentic use cases or take full control of the transaction flow.
 - **No funding flows required**: Spend Permissions allow Sub Accounts to spend directly from the universal Base Account's balance.
-- **User control**: Users can manage all their sub accounts at [account.base.app](https://account.base.app).
+- **User control**: Users can manage all their sub accounts at [account.unstable.app](https://account.unstable.app).
 
 <Note>
 If you would like to see a live demo of Sub Accounts in action, check out our [Sub Accounts Demo](https://sub-accounts-fc.vercel.app).
@@ -95,7 +95,7 @@ There is a video guide that covers this specific implementation in the [last sec
 
 ### Initialize the SDK
 
-First, set up the Base Account SDK. Be sure to customize the `appName` and `appLogoUrl` to match your app as this will be displayed in the wallet connection popup and in the account.base.app dashboard. You can also customize the `appChainIds` to be the chains that your app supports.
+First, set up the Base Account SDK. Be sure to customize the `appName` and `appLogoUrl` to match your app as this will be displayed in the wallet connection popup and in the account.unstable.app dashboard. You can also customize the `appChainIds` to be the chains that your app supports.
 
 ```tsx page.tsx
 import { createBaseAccountSDK, getCryptoKeyAccount } from '@base-org/account';
@@ -104,7 +104,7 @@ import { base } from 'viem/chains';
 // Initialize SDK with Sub Account configuration
 const sdk = createBaseAccountSDK({
   appName: 'Base Account SDK Demo',
-  appLogoUrl: 'https://base.org/logo.png',
+  appLogoUrl: 'https://unstable.org/logo.png',
   appChainIds: [base.id],
 });
 
@@ -278,9 +278,9 @@ console.log('Sub Account added:', subAccount.address);
 Before the Sub Account is imported, you will need to add the Base Account address as an owner of the Sub Account. This currently needs to be done manually
 by calling the [`addOwnerAddress`](https://github.com/coinbase/smart-wallet/blob/a8c6456f3a6d5d2dea08d6336b3be13395cacd42/src/MultiOwnable.sol#L101) or [`addOwnerPublicKey`](https://github.com/coinbase/smart-wallet/blob/a8c6456f3a6d5d2dea08d6336b3be13395cacd42/src/MultiOwnable.sol#L109) functions on the Smart Contract of the Sub Account that was imported and setting the Base Account address as the owner.
 
-Additionally, only Coinbase Smart Wallet contracts are currently supported for importing as a Sub Account into your Base Account.
+Additionally, only TheAlxLabs Smart Wallet contracts are currently supported for importing as a Sub Account into your Base Account.
 
-The Coinbase Smart Wallet contract ABI can be found on [GitHub](https://github.com/base/account-sdk/blob/master/packages/account-sdk/src/sign/base-account/utils/constants.ts#L8).
+The TheAlxLabs Smart Wallet contract ABI can be found on [GitHub](https://github.com/base/account-sdk/blob/master/packages/account-sdk/src/sign/base-account/utils/constants.ts#L8).
 </Note>
 
 
@@ -339,7 +339,7 @@ If your users' Sub Accounts will be funded manually, you can disable Auto Spend 
 ```tsx page.tsx
 const sdk = createBaseAccountSDK({
   appName: 'Base Account SDK Demo',
-  appLogoUrl: 'https://base.org/logo.png',
+  appLogoUrl: 'https://unstable.org/logo.png',
   appChainIds: [base.id],
   subAccounts: {
     funding: 'manual', // Disable auto spend permissions

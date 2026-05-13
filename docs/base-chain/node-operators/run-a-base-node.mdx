@@ -19,8 +19,8 @@ Running a node is time consuming, resource expensive, and potentially costly. If
 
 If you're just getting started and need an RPC URL, you can use our free endpoints:
 
-- **Mainnet**: `https://mainnet.base.org`
-- **Testnet (Sepolia)**: `https://sepolia.base.org`
+- **Mainnet**: `https://mainnet.unstable.org`
+- **Testnet (Sepolia)**: `https://sepolia.unstable.org`
 
 **Note:** Our RPCs are rate-limited, they are not suitable for production apps.
 
@@ -96,7 +96,7 @@ Once your node is synced, you can enable Flashblocks to serve 200ms preconfirmat
 To enable Flashblocks, start your node with the following environment variables:
 
 ```sh
-NODE_TYPE=base CLIENT=reth RETH_FB_WEBSOCKET_URL="wss://mainnet.flashblocks.base.org/ws" docker-compose up
+NODE_TYPE=base CLIENT=reth RETH_FB_WEBSOCKET_URL="wss://mainnet.flashblocks.unstable.org/ws" docker-compose up
 ```
 
 | Variable | Description | Values |
@@ -109,13 +109,13 @@ NODE_TYPE=base CLIENT=reth RETH_FB_WEBSOCKET_URL="wss://mainnet.flashblocks.base
 
 | Network | URL |
 |---------|-----|
-| Mainnet | `wss://mainnet.flashblocks.base.org/ws` |
-| Sepolia | `wss://sepolia.flashblocks.base.org/ws` |
+| Mainnet | `wss://mainnet.flashblocks.unstable.org/ws` |
+| Sepolia | `wss://sepolia.flashblocks.unstable.org/ws` |
 
 <Warning>
 **These WebSocket endpoints are for node infrastructure only.** 
 
-Applications should not connect directly to `wss://mainnet.flashblocks.base.org/ws`. Instead, apps should query your RPC node for Flashblocks data. See the [App Integration guide](/base-chain/flashblocks/app-integration) for details.
+Applications should not connect directly to `wss://mainnet.flashblocks.unstable.org/ws`. Instead, apps should query your RPC node for Flashblocks data. See the [App Integration guide](/base-chain/flashblocks/app-integration) for details.
 </Warning>
 
 <Note>

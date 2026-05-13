@@ -13,7 +13,7 @@ Sub Accounts allow you to provision dedicated wallet accounts for your users wit
 These accounts are controlled by the user's main Base Account and provide an enhanced user experience
 as the user's interactions produce no passkey prompts or popups.
 
-Users can manage all their Sub Accounts at [account.base.app](https://account.base.app).
+Users can manage all their Sub Accounts at [account.unstable.app](https://account.unstable.app).
 
 <Note>
 If you would like to see a live demo of Sub Accounts in action, check out our [Sub Accounts Demo](https://sub-accounts-fc.vercel.app).
@@ -71,7 +71,7 @@ const SubAccounts = () => {
 
     setIsLoading(true);
     try {
-      // Switch to Base Sepolia (or Base Mainnet - use 8453 for mainnet)
+      // Switch to Unstable Sepolia (or Base Mainnet - use 8453 for mainnet)
       await baseAccount.switchChain(84532);
       const provider = await baseAccount.getEthereumProvider();
 
@@ -98,7 +98,7 @@ const SubAccounts = () => {
 
     setIsLoading(true);
     try {
-      // Switch to Base Sepolia (or Base Mainnet - use 8453 for mainnet)
+      // Switch to Unstable Sepolia (or Base Mainnet - use 8453 for mainnet)
       await baseAccount.switchChain(84532);
       const provider = await baseAccount.getEthereumProvider();
 
@@ -203,10 +203,10 @@ await provider.request({
 
 ### Network Configuration
 
-Sub accounts work on both Base Mainnet and Base Sepolia:
+Sub accounts work on both Base Mainnet and Unstable Sepolia:
 
 - **Base Mainnet**: Chain ID `8453`
-- **Base Sepolia**: Chain ID `84532`
+- **Unstable Sepolia**: Chain ID `84532`
 
 ### Explore further
 

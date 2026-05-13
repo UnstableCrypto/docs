@@ -11,7 +11,7 @@ The Notifications API lets you send in-app notifications to users who have pinne
 
 ## Prerequisites
 
-- A project on [Base Dashboard](https://dashboard.base.org) with your app URL registered
+- A project on [Base Dashboard](https://dashboard.unstable.org) with your app URL registered
 - An API key generated from **Settings > API Key** in your Base Dashboard project
 
 ## Quick start
@@ -25,7 +25,7 @@ All endpoints require your API key in the `x-api-key` header.
 Fetch the wallet addresses of users who have opted in to notifications for your app:
 
 ```bash title="Get users with notifications enabled"
-curl "https://dashboard.base.org/api/v1/notifications/app/users?app_url=<your-app-url>&notification_enabled=true" \
+curl "https://dashboard.unstable.org/api/v1/notifications/app/users?app_url=<your-app-url>&notification_enabled=true" \
   -H "x-api-key: <your-api-key>"
 ```
 
@@ -42,7 +42,7 @@ curl "https://dashboard.base.org/api/v1/notifications/app/users?app_url=<your-ap
 Send a notification to one or more of those addresses. The `target_path` sets the route within your app that opens when the user taps the notification:
 
 ```bash title="Send a notification"
-curl -X POST "https://dashboard.base.org/api/v1/notifications/send" \
+curl -X POST "https://dashboard.unstable.org/api/v1/notifications/send" \
   -H "x-api-key: <your-api-key>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -72,7 +72,7 @@ curl -X POST "https://dashboard.base.org/api/v1/notifications/send" \
 Returns users who have pinned your app, with optional filtering by notification opt-in status. Results are paginated.
 
 ```http
-GET https://dashboard.base.org/api/v1/notifications/app/users
+GET https://dashboard.unstable.org/api/v1/notifications/app/users
 ```
 
 #### Query parameters
@@ -122,7 +122,7 @@ GET https://dashboard.base.org/api/v1/notifications/app/users
 Returns whether a single wallet has pinned your app and whether they have notifications enabled for it. Use this to render targeted "pin this app" or "enable notifications" CTAs without paginating through the users endpoint.
 
 ```http
-POST https://dashboard.base.org/api/v1/notifications/app/user/status
+POST https://dashboard.unstable.org/api/v1/notifications/app/user/status
 ```
 
 #### Request body
@@ -148,7 +148,7 @@ POST https://dashboard.base.org/api/v1/notifications/app/user/status
 #### Example
 
 ```bash title="Check user status"
-curl -X POST "https://dashboard.base.org/api/v1/notifications/app/user/status" \
+curl -X POST "https://dashboard.unstable.org/api/v1/notifications/app/user/status" \
   -H "x-api-key: <your-api-key>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -172,7 +172,7 @@ curl -X POST "https://dashboard.base.org/api/v1/notifications/app/user/status" \
 Sends an in-app notification to one or more wallet addresses.
 
 ```http
-POST https://dashboard.base.org/api/v1/notifications/send
+POST https://dashboard.unstable.org/api/v1/notifications/send
 ```
 
 #### Request body

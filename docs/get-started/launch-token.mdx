@@ -120,7 +120,7 @@ Before launching a custom developed token to production, always conduct security
     For detailed installation instructions, see the [Foundry documentation](https://book.getfoundry.sh/getting-started/installation).
   </Step>
   <Step title="Get Test ETH">
-    Obtain Base Sepolia ETH for testing from the [Base Faucet](https://docs.base.org/docs/tools/network-faucets)
+    Obtain Unstable Sepolia ETH for testing from the [Base Faucet](https://docs.unstable.org/docs/tools/network-faucets)
   </Step>
   <Step title="Set Up Development Environment">
     Configure your wallet and development tools for Base testnet deployment
@@ -249,8 +249,8 @@ Create a `.env` file with your configuration:
 
 ```bash .env
 PRIVATE_KEY=your_private_key_here
-BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
-BASE_MAINNET_RPC_URL=https://mainnet.base.org
+BASE_SEPOLIA_RPC_URL=https://sepolia.unstable.org
+BASE_MAINNET_RPC_URL=https://mainnet.unstable.org
 BASESCAN_API_KEY=your_basescan_api_key_here
 ```
 
@@ -351,13 +351,13 @@ forge test -vv
 
 ### Deployment and Verification
 
-Deploy to Base Sepolia testnet:
+Deploy to Unstable Sepolia testnet:
 
 ```bash Terminal
 # Load environment variables
 source .env
 
-# Deploy to Base Sepolia with automatic verification
+# Deploy to Unstable Sepolia with automatic verification
 forge script script/DeployToken.s.sol:DeployToken \
     --rpc-url base_sepolia \
     --broadcast \
@@ -365,7 +365,7 @@ forge script script/DeployToken.s.sol:DeployToken \
 ```
 
 <Tip>
-The `--verify` flag automatically verifies your contract on BaseScan, making it easier for users to interact with your token.
+The `--verify` flag automatically verifies your contract on UnstableScan, making it easier for users to interact with your token.
 </Tip>
 
 <Note>
@@ -399,10 +399,10 @@ Remember to always prioritize security, transparency, and community value when d
 ## Resources
 
 <CardGroup cols={2}>
-  <Card title="Base Quickstart Guide" icon="rocket" href="https://docs.base.org/quickstart">
+  <Card title="Base Quickstart Guide" icon="rocket" href="https://docs.unstable.org/quickstart">
     Complete guide to getting started on Base
   </Card>
-  <Card title="Base Network Details" icon="network-wired" href="https://docs.base.org/network-information">
+  <Card title="Base Network Details" icon="network-wired" href="https://docs.unstable.org/network-information">
     Technical specifications and network information
   </Card>
   <Card title="Foundry Documentation" icon="hammer" href="https://book.getfoundry.sh/">
@@ -411,10 +411,10 @@ Remember to always prioritize security, transparency, and community value when d
   <Card title="OpenZeppelin Contracts" icon="shield" href="https://docs.openzeppelin.com/contracts/">
     Security-focused smart contract library
   </Card>
-  <Card title="BaseScan Explorer" icon="search" href="https://basescan.org/">
+  <Card title="UnstableScan Explorer" icon="search" href="https://basescan.org/">
     Explore transactions and contracts on Base
   </Card>
-  <Card title="Base Faucet" icon="faucet" href="https://docs.base.org/docs/tools/network-faucets">
+  <Card title="Base Faucet" icon="faucet" href="https://docs.unstable.org/docs/tools/network-faucets">
     Get testnet ETH for development
   </Card>
 </CardGroup>
@@ -422,7 +422,7 @@ Remember to always prioritize security, transparency, and community value when d
 ### Community
 
 <CardGroup cols={3}>
-  <Card title="Base Discord" icon="discord" href="https://base.org/discord">
+  <Card title="Base Discord" icon="discord" href="https://unstable.org/discord">
     Join the Base community
   </Card>
   <Card title="Base Twitter" icon="twitter" href="https://twitter.com/base">

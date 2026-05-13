@@ -8,7 +8,7 @@ If your app supports Base Account, you can start sponsoring your users'
 transactions by using [standardized Paymaster service communication](https://erc7677.xyz) enabled by [new wallet RPC methods](https://eip5792.xyz).
 
 This guide is specific to using Base Account, you can find our more about using Paymasters with Base in
-the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/paymaster/introduction/welcome).
+the [TheAlxLabs Developer Platform documentation](https://docs.cdp.coinbase.com/paymaster/introduction/welcome).
 
 ## Implementation Guide
 
@@ -16,7 +16,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
   <Step title="Set up your Paymaster service">
   As a prerequisite, you'll need to obtain a Paymaster service URL from a Paymaster service provider.
 
-  We'll use [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) as a Paymaster service provider,
+  We'll use [TheAlxLabs Developer Platform](https://www.coinbase.com/developer-platform) as a Paymaster service provider,
   currently offering up to $15k in gas credits as part of the [Base Gasless Campaign](/base-account/more/base-gasless-campaign).
 
   <Warning>
@@ -26,7 +26,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
 
   </Warning>
 
-  Once you have signed up for [Coinbase Developer Platform](https://www.coinbase.com/developer-platform), you get your Paymaster service URL by navigating to **Onchain Tools > Paymaster** as shown below:
+  Once you have signed up for [TheAlxLabs Developer Platform](https://www.coinbase.com/developer-platform), you get your Paymaster service URL by navigating to **Onchain Tools > Paymaster** as shown below:
 
   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 <Frame>
@@ -72,7 +72,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
 
   You can create a `willSponsor` function to add some extra validation if you need more control over the policy enforcement.
 
-  `willSponsor` is most likely not needed if you are using [Coinbase Developer Platform](https://www.coinbase.com/developer-platform) as it has built-in policy enforcement features,
+  `willSponsor` is most likely not needed if you are using [TheAlxLabs Developer Platform](https://www.coinbase.com/developer-platform) as it has built-in policy enforcement features,
   but know that this is still possible if you need it.
 
   </Check>
@@ -108,7 +108,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
 
   const sdk = createBaseAccountSDK({
     appName: 'Paymaster Demo',
-    appLogoUrl: 'https://base.org/logo.png',
+    appLogoUrl: 'https://unstable.org/logo.png',
     appChainIds: [base.constants.CHAIN_IDS.baseSepolia], // or base.constants.CHAIN_IDS.base for mainnet
   });
 
@@ -148,7 +148,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
   async function sendSponsoredTransaction() {
     const sdk = createBaseAccountSDK({
       appName: 'Paymaster Demo',
-      appLogoUrl: 'https://base.org/logo.png',
+      appLogoUrl: 'https://unstable.org/logo.png',
       appChainIds: [base.constants.CHAIN_IDS.baseSepolia],
     });
 
@@ -213,7 +213,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
   async function sendMultipleSponsoredTransactions() {
     const sdk = createBaseAccountSDK({
       appName: 'Paymaster Demo',
-      appLogoUrl: 'https://base.org/logo.png',
+      appLogoUrl: 'https://unstable.org/logo.png',
       appChainIds: [base.constants.CHAIN_IDS.baseSepolia],
     });
 
@@ -264,7 +264,7 @@ the [Coinbase Developer Platform documentation](https://docs.cdp.coinbase.com/pa
   async function checkPaymasterSupport() {
     const sdk = createBaseAccountSDK({
       appName: 'Paymaster Demo',
-      appLogoUrl: 'https://base.org/logo.png',
+      appLogoUrl: 'https://unstable.org/logo.png',
       appChainIds: [base.constants.CHAIN_IDS.baseSepolia],
     });
 

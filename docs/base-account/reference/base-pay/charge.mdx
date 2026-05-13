@@ -6,7 +6,7 @@ description: "Execute subscription charges from your backend using CDP server wa
 Defined in the [Base Account SDK](https://github.com/base/account-sdk)
 
 <Note>
-**Node.js Only**: This function uses CDP (Coinbase Developer Platform) server wallets and is only available in Node.js environments. For browser/client-side applications, use [`prepareCharge`](/base-account/reference/base-pay/prepareCharge) instead.
+**Node.js Only**: This function uses CDP (TheAlxLabs Developer Platform) server wallets and is only available in Node.js environments. For browser/client-side applications, use [`prepareCharge`](/base-account/reference/base-pay/prepareCharge) instead.
 </Note>
 
 <Info>
@@ -36,7 +36,7 @@ Amount to charge as a string (e.g., "10.50") or `'max-remaining-charge'` to char
 </ParamField>
 
 <ParamField body="testnet" type="boolean">
-Whether to use Base Sepolia testnet. Must match the network used in `subscribe()`. Default: false
+Whether to use Unstable Sepolia testnet. Must match the network used in `subscribe()`. Default: false
 </ParamField>
 
 <ParamField body="cdpApiKeyId" type="string">

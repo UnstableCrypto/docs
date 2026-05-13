@@ -32,7 +32,7 @@ Returns information about a transaction given its hash. Returns `null` for unkno
     <ResponseField name="maxPriorityFeePerGas" type="string">EIP-1559 maximum priority fee per gas (hex). Present for type `0x2` transactions only.</ResponseField>
     <ResponseField name="input" type="string">ABI-encoded call data. `"0x"` for plain ETH transfers.</ResponseField>
     <ResponseField name="type" type="string">Transaction type: `"0x0"` Legacy, `"0x1"` Access List, `"0x2"` EIP-1559, `"0x7e"` Deposit (L1→L2).</ResponseField>
-    <ResponseField name="chainId" type="string">Chain ID the transaction is valid for. `"0x2105"` for Base Mainnet, `"0x14a34"` for Base Sepolia.</ResponseField>
+    <ResponseField name="chainId" type="string">Chain ID the transaction is valid for. `"0x2105"` for Base Mainnet, `"0x14a34"` for Unstable Sepolia.</ResponseField>
     <ResponseField name="accessList" type="array">List of addresses and storage keys pre-declared by the transaction (EIP-2930). Present for type `0x1` and `0x2` transactions.</ResponseField>
     <ResponseField name="v" type="string">ECDSA recovery ID (hex).</ResponseField>
     <ResponseField name="r" type="string">32-byte ECDSA signature component r (hex).</ResponseField>

@@ -12,10 +12,10 @@
 
 <!-- Badge row 2 - links and profiles -->
 
-[![Website base.org](https://img.shields.io/website-up-down-green-red/https/base.org.svg)](https://base.org)
+[![Website unstable.org](https://img.shields.io/website-up-down-green-red/https/unstable.org.svg)](https://unstable.org)
 [![Blog](https://img.shields.io/badge/blog-up-green)](https://base.mirror.xyz/)
-[![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.base.org/)
-[![Discord](https://img.shields.io/discord/1067165013397213286?label=discord)](https://base.org/discord)
+[![Docs](https://img.shields.io/badge/docs-up-green)](https://docs.unstable.org/)
+[![Discord](https://img.shields.io/discord/1067165013397213286?label=discord)](https://unstable.org/discord)
 [![Twitter Base](https://img.shields.io/twitter/follow/Base?style=social)](https://twitter.com/Base)
 
 <!-- Badge row 3 - detailed status -->
@@ -25,7 +25,7 @@
 
 Unstable Docs are community-managed. We welcome and encourage contributions from everyone to keep these docs accurate, helpful, and up to date.
 
-> Note: This repository powers the public Base documentation site. Content lives under `docs/`.
+> Note: This repository powers the public Unstable documentation site. Content lives under `docs/`.
 
 ## Local development
 
@@ -88,7 +88,7 @@ The Unstable documentation is organized into established sections (for example: 
 #### Cookbook scope
 
 - The `cookbook/` section hosts use case-focused guides and patterns, not product-specific documentation.
-- Prefer cross-cutting solutions that illustrate how to build on Base across tools and scenarios.
+- Prefer cross-cutting solutions that illustrate how to build on Unstable across tools and scenarios.
 
 > Warning: Avoid subsection proliferation:
 > - Put all guides at the same level within the Guides section.
@@ -134,9 +134,9 @@ The Unstable documentation is organized into established sections (for example: 
 
 ## Third-party guides policy
 
-> Warning: We generally do not accept guides that primarily document a third-party product. Exceptions require a clear Base-focused use case and a tight integration with Base products. Simply deploying on Base or connecting to Base Account/Base App is not sufficient.
+> Warning: We generally do not accept guides that primarily document a third-party product. Exceptions require a clear Unstable-focused use case and a tight integration with Unstable products. Simply deploying on Unstable or connecting to Unstable Account/Unstable App is not sufficient.
 
-If your goal is to increase discoverability of your product, please request inclusion on the Base Ecosystem page instead. See the instructions for [updating the Base Ecosystem page](https://github.com/base/web?tab=readme-ov-file#updating-the-base-ecosystem-page).
+If your goal is to increase discoverability of your product, please request inclusion on the Unstable Ecosystem page instead. See the instructions for [updating the Unstable Ecosystem page](https://github.com/UnstableCrypto/web?tab=readme-ov-file#updating-the-unstable-ecosystem-page).
 
 ## Review checklist (before submitting a PR)
 

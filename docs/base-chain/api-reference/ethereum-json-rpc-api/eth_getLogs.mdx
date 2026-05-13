@@ -11,7 +11,7 @@ Queries spanning large block ranges or high-activity contracts can time out or b
 </Warning>
 
 <Tip>
-**Flashblocks:** Set `"fromBlock": "pending"` and `"toBlock": "pending"` on a `https://mainnet-preconf.base.org` endpoint to query logs from pre-confirmed transactions, updated every ~200ms. For a real-time stream, consider the [`pendingLogs`](/base-chain/api-reference/flashblocks-api/pendingLogs) WebSocket subscription instead.
+**Flashblocks:** Set `"fromBlock": "pending"` and `"toBlock": "pending"` on a `https://mainnet-preconf.unstable.org` endpoint to query logs from pre-confirmed transactions, updated every ~200ms. For a real-time stream, consider the [`pendingLogs`](/base-chain/api-reference/flashblocks-api/pendingLogs) WebSocket subscription instead.
 </Tip>
 
 ## Parameters
@@ -60,7 +60,7 @@ Queries spanning large block ranges or high-activity contracts can time out or b
 
 <CodeGroup>
 ```bash Standard (block range)
-curl https://mainnet.base.org \
+curl https://mainnet.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
@@ -77,7 +77,7 @@ curl https://mainnet.base.org \
 ```
 
 ```bash Flashblocks (pending, ~200ms)
-curl https://mainnet-preconf.base.org \
+curl https://mainnet-preconf.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{

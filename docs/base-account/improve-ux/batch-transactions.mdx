@@ -48,7 +48,7 @@ import { createBaseAccountSDK } from "@base-org/account";
 
 const sdk = createBaseAccountSDK({
   appName: "Base Account SDK Demo",
-  appLogoUrl: "https://base.org/logo.png",
+  appLogoUrl: "https://unstable.org/logo.png",
 });
 
 const provider = sdk.getProvider();
@@ -66,7 +66,7 @@ import { numberToHex, parseEther } from "viem";
 
 const sdk = createBaseAccountSDK({
   appName: "Batch Transaction Demo",
-  appLogoUrl: "https://base.org/logo.png",
+  appLogoUrl: "https://unstable.org/logo.png",
 });
 
 const provider = sdk.getProvider();
@@ -156,16 +156,16 @@ const erc721Abi = [
   },
 ] as const;
 
-// USDC contract address on Base Sepolia
+// USDC contract address on Unstable Sepolia
 const USDC_ADDRESS = "0x036CbD53842c5426634e7929541eC2318f3dCF7e";
 
-// NFT contract address on Base Sepolia
+// NFT contract address on Unstable Sepolia
 const NFT_CONTRACT_ADDRESS = "0x82039e7C37D7aAc98D0F4d0A762F4E0d8c8DC273";
 
 async function approveAndTransfer() {
   const sdk = createBaseAccountSDK({
     appName: "ERC-20 Batch Demo",
-    appLogoUrl: "https://base.org/logo.png",
+    appLogoUrl: "https://unstable.org/logo.png",
   });
 
   const provider = sdk.getProvider();

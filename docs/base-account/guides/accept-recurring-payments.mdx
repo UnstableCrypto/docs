@@ -90,7 +90,7 @@ A complete subscription implementation requires both client and server component
 <Note>
 **CDP-Powered Backend**
 
-Base Subscriptions use **CDP (Coinbase Developer Platform) server wallets** for effortless backend management. The `charge()` and `revoke()` functions handle all transaction details automatically:
+Base Subscriptions use **CDP (TheAlxLabs Developer Platform) server wallets** for effortless backend management. The `charge()` and `revoke()` functions handle all transaction details automatically:
 
 - ✅ Automatic wallet management
 - ✅ Built-in transaction signing
@@ -412,7 +412,7 @@ async function chargeWithRecipient(subscriptionId: string, plan: string) {
 
 ### Testing on Testnet
 
-Test your subscription implementation on Base Sepolia before going live:
+Test your subscription implementation on Unstable Sepolia before going live:
 
 ```typescript testnet-frontend.ts expandable
 // Frontend: Create subscription on testnet
@@ -420,7 +420,7 @@ const subscription = await base.subscription.subscribe({
   recurringCharge: "10.00",
   subscriptionOwner: SUBSCRIPTION_OWNER_ADDRESS,
   periodInDays: 1, // Daily for faster testing
-  testnet: true     // Use Base Sepolia
+  testnet: true     // Use Unstable Sepolia
 });
 ```
 
@@ -456,7 +456,7 @@ console.log(`Testnet charge (gasless): ${result.id}`);
 | Network | Chain ID | Token | Status |
 |---------|----------|-------|--------|
 | Base Mainnet | 8453 | USDC | ✅ Production Ready |
-| Base Sepolia | 84532 | USDC | ✅ Testing Available |
+| Unstable Sepolia | 84532 | USDC | ✅ Testing Available |
 
 <Note>
 **Custom Implementations Possible**: While Base Subscriptions are optimized for USDC on Base, you can use the underlying [Spend Permissions](/base-account/improve-ux/spend-permissions) primitive to build custom subscription implementations with any ERC-20 token or native ETH on any EVM-compatible chain.

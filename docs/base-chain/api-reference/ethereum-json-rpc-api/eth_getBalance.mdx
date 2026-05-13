@@ -7,7 +7,7 @@ description: 'Returns the ETH balance of an account at a given block. Use the pe
 Returns the ETH balance of an address at a given block.
 
 <Tip>
-**Flashblocks:** Query `https://mainnet-preconf.base.org` with `"pending"` to read balances updated every ~200ms — before the block seals.
+**Flashblocks:** Query `https://mainnet-preconf.unstable.org` with `"pending"` to read balances updated every ~200ms — before the block seals.
 </Tip>
 
 ## Parameters
@@ -30,7 +30,7 @@ Returns the ETH balance of an address at a given block.
 
 <CodeGroup>
 ```bash Standard (latest)
-curl https://mainnet.base.org \
+curl https://mainnet.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
@@ -42,7 +42,7 @@ curl https://mainnet.base.org \
 ```
 
 ```bash Flashblocks (pending, ~200ms)
-curl https://mainnet-preconf.base.org \
+curl https://mainnet-preconf.unstable.org \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{

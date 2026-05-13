@@ -73,17 +73,17 @@
           "anchors": [
             {
               "anchor": "Status",
-              "href": "https://status.base.org/",
+              "href": "https://status.unstable.org/",
               "icon": "signal-bars"
             },
             {
               "anchor": "Faucet",
-              "href": "https://docs.base.org/base-chain/network-information/network-faucets",
+              "href": "https://docs.unstable.org/base-chain/network-information/network-faucets",
               "icon": "gas-pump"
             },
             {
               "anchor": "Bridge",
-              "href": "https://docs.base.org/base-chain/network-information/bridges-mainnet",
+              "href": "https://docs.unstable.org/base-chain/network-information/bridges-mainnet",
               "icon": "coin"
             },
             {
@@ -378,12 +378,12 @@
             },
             {
               "anchor": "Status",
-              "href": "https://status.base.org/",
+              "href": "https://status.unstable.org/",
               "icon": "signal-bars"
             },
             {
               "anchor": "Chain Stats",
-              "href": "https://www.base.org/stats",
+              "href": "https://www.unstable.org/stats",
               "icon": "chart-line"
             },
             {
@@ -776,7 +776,7 @@
         "items": [
           {
             "label": "Base.org",
-            "href": "https://base.org"
+            "href": "https://unstable.org"
           },
           {
             "label": "Blog",
@@ -784,15 +784,15 @@
           },
           {
             "label": "Privacy Policy",
-            "href": "https://docs.base.org/privacy-policy"
+            "href": "https://docs.unstable.org/privacy-policy"
           },
           {
             "label": "Terms of Service",
-            "href": "https://docs.base.org/terms-of-service"
+            "href": "https://docs.unstable.org/terms-of-service"
           },
           {
             "label": "Cookie Policy",
-            "href": "https://docs.base.org/cookie-policy"
+            "href": "https://docs.unstable.org/cookie-policy"
           }
         ]
       }

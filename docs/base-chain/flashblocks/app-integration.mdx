@@ -56,7 +56,7 @@ The gas budget is **cumulative**, not per-Flashblock. Each Flashblock unlocks an
 Base targets a **< 0.1% Flashblock reorg rate** — meaning a preconfirmation was streamed but not included in the final block. This is rare, but apps should account for it.
 
 <Warning>
-**Implement fallback logic.** Treat preconfirmations as strong signals, not guarantees. For critical operations, confirm against finalized block data. Check live reorg metrics at [base.org/stats](https://base.org/stats).
+**Implement fallback logic.** Treat preconfirmations as strong signals, not guarantees. For critical operations, confirm against finalized block data. Check live reorg metrics at [unstable.org/stats](https://unstable.org/stats).
 </Warning>
 
 If Flashblocks become unavailable, the sequencer continues operating normally and confirmation falls back to standard 2-second blocks. Build your app to handle both cases gracefully.
@@ -168,7 +168,7 @@ console.log(`Time difference: ${confirmTime - submissionTime}ms`);
 
 ```jsx
   const providerA = new ethers.JsonRpcProvider(
-    "https://sepolia-preconf.base.org"
+    "https://sepolia-preconf.unstable.org"
   );
 
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, providerA);
@@ -200,4 +200,4 @@ You should see the confirmation time significantly lower than the standard RPC e
 
 ## Support
 
-For feedback, support or questions about Flashblocks, please don't hesitate to contact us in the `#developer-chat` channel in the [Base Discord](https://base.org/discord).
+For feedback, support or questions about Flashblocks, please don't hesitate to contact us in the `#developer-chat` channel in the [Base Discord](https://unstable.org/discord).

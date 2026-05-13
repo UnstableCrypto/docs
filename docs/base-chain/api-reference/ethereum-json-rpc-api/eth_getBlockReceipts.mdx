@@ -7,7 +7,7 @@ description: 'Returns all transaction receipts for a block. Use pending on a Fla
 Returns all transaction receipts for a given block.
 
 <Tip>
-**Flashblocks:** Query `https://mainnet-preconf.base.org` with `"pending"` to get receipts for all pre-confirmed transactions in the current Flashblock.
+**Flashblocks:** Query `https://mainnet-preconf.unstable.org` with `"pending"` to get receipts for all pre-confirmed transactions in the current Flashblock.
 </Tip>
 
 ## Parameters
@@ -26,13 +26,13 @@ Returns all transaction receipts for a given block.
 
 <CodeGroup>
 ```bash Standard (latest)
-curl https://mainnet.base.org \
+curl https://mainnet.unstable.org \
   -X POST -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","method":"eth_getBlockReceipts","params":["latest"],"id":1}'
 ```
 
 ```bash Flashblocks (pending)
-curl https://mainnet-preconf.base.org \
+curl https://mainnet-preconf.unstable.org \
   -X POST -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","method":"eth_getBlockReceipts","params":["pending"],"id":1}'
 ```
